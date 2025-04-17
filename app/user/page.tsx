@@ -1,16 +1,25 @@
 "use client";
+
+import React, { useState } from "react";
 import ConnectWallet from "../components/ConnectWallet";
-import { useState } from "react";
 import { getVaultContract } from "../../utils/contract";
 import { formatEther, parseEther } from "ethers";
+import { ethers } from "ethers";
+
+// Extend the Window interface for Ethereum
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
 
 export default function UserPage() {
-  const [collateral, setCollateral] = useState(null);
-  const [debt, setDebt] = useState(null);
-  const [depositAmount, setDepositAmount] = useState("");
-  const [borrowAmount, setBorrowAmount] = useState("");
-  const [repayAmount, setRepayAmount] = useState("");
-  const [withdrawAmount, setWithdrawAmount] = useState("");
+  const [collateral, setCollateral] = useState<string | null>(null);
+  const [debt, setDebt] = useState<string | null>(null);
+  const [depositAmount, setDepositAmount] = useState<string>("");
+  const [borrowAmount, setBorrowAmount] = useState<string>("");
+  const [repayAmount, setRepayAmount] = useState<string>("");
+  const [withdrawAmount, setWithdrawAmount] = useState<string>("");
 
   const handleRead = async () => {
     try {
@@ -59,16 +68,17 @@ export default function UserPage() {
   const handleRepay = async () => {
     try {
       const contract = await getVaultContract();
-      const signer = await window.ethereum.request({ method: "eth_requestAccounts" });
+      const [account] = await window.ethereum.request({ method: "eth_requestAccounts" });
       const amount = parseEther(repayAmount);
 
       const daiToken = await contract.daiToken();
-      const { ethers } = await import("ethers");
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signerObj = await provider.getSigner();
-      const dai = new ethers.Contract(daiToken, [
-        "function approve(address spender, uint256 amount) public returns (bool)"
-      ], signerObj);
+      const dai = new ethers.Contract(
+        daiToken,
+        ["function approve(address spender, uint256 amount) public returns (bool)"],
+        signerObj
+      );
 
       const approveTx = await dai.approve(contract.target, amount);
       await approveTx.wait();
