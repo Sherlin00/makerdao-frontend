@@ -1,6 +1,22 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function Home() {
+  const [daiPrice, setDaiPrice] = useState(null);
+
+  useEffect(() => {
+    async function fetchDaiPrice() {
+      try {
+        const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=dai&vs_currencies=usd");
+        const data = await response.json();
+        setDaiPrice(data.dai.usd);
+      } catch (error) {
+        console.error("Error fetching DAI price:", error);
+      }
+    }
+    fetchDaiPrice();
+  }, []);
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
