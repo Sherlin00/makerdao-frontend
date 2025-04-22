@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "../components/Navbar";
 import toast from "react-hot-toast";
 import React, { useState } from "react";
 import { Coins, ArrowDownCircle } from "lucide-react";
@@ -113,7 +112,6 @@ export default function UserPage() {
 
   return (
     <>
-      <Navbar />
       <div className="min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-10 px-6">
         <div className="max-w-3xl mx-auto bg-white text-gray-900 rounded-3xl shadow-2xl p-8">
           <h2 className="text-3xl font-bold mb-4 text-center">Your Vault</h2>
