@@ -1,6 +1,6 @@
 "use client";
 import Navbar from "../components/Navbar";
-
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import ConnectWallet from "../components/ConnectWallet";
 import { getVaultContract } from "../../utils/contract";
@@ -44,11 +44,11 @@ export default function UserPage() {
       const valueInWei = parseEther(depositAmount.toString());
       const tx = await contract.deposit({ value: valueInWei });
       await tx.wait();
-      alert("Deposit successful!");
+      toast.success("Deposit successful!");
       setDepositAmount("");
     } catch (err) {
       console.error("Deposit failed:", err);
-      alert("Deposit failed. Check console.");
+      toast.error("Deposit failed. Check console.");
     }
   };
 
@@ -58,11 +58,11 @@ export default function UserPage() {
       const daiAmount = parseEther(borrowAmount);
       const tx = await contract.borrow(daiAmount);
       await tx.wait();
-      alert("Borrow successful!");
+      toast.success("Borrow successful!");
       setBorrowAmount("");
     } catch (err) {
       console.error("Borrow failed:", err);
-      alert("Borrow failed. Check console.");
+      toast.error("Borrow failed. Check console.");
     }
   };
 
@@ -86,11 +86,11 @@ export default function UserPage() {
 
       const tx = await contract.repay(amount);
       await tx.wait();
-      alert("Repay successful!");
+      toast.success("Repay successful!");
       setRepayAmount("");
     } catch (err) {
       console.error("Repay failed:", err);
-      alert("Repay failed. Check console.");
+      toast.error("Repay failed. Check console.");
     }
   };
 
@@ -102,11 +102,11 @@ export default function UserPage() {
       const tx = await contract.withdraw(valueInWei);
       await tx.wait();
 
-      alert("Withdrawal successful!");
+      toast.success("Withdrawal successful!");
       setWithdrawAmount("");
     } catch (err) {
       console.error("Withdrawal failed:", err);
-      alert("Withdrawal failed. Check console for details.");
+      toast.error("Withdrawal failed. Check console for details.");
     }
   };
 

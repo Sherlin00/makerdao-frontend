@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import type { Metadata } from "next";
 import { Inter, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
@@ -30,6 +31,7 @@ export default function RootLayout({
       */}
       <body className={`${makerSans.variable} ${makerMono.variable} antialiased`}>
         {children}
+        <Toaster position="top-center" />
       </body>
     </html>
   );
