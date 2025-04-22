@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-md p-4 flex justify-between items-center">
       <div className="text-2xl font-bold text-blue-600">
-        FTGP Vault
+        MakerDAO
       </div>
       <div className="space-x-4">
         <Link href="/">
