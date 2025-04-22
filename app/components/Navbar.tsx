@@ -14,6 +14,9 @@ export default function Navbar() {
         <Link href="/user">
           <span className="text-gray-700 hover:text-blue-600 cursor-pointer">Your Vault</span>
         </Link>
+        <Link href="/login">
+          <span className="text-gray-700 hover:text-blue-600 cursor-pointer">Login</span>
+        </Link>
       </div>
     </nav>
   );
