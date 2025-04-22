@@ -25,12 +25,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/*
-        将我们在上面定义的 makerSans.variable、makerMono.variable 
-        注入到 body 的 className 中
-      */}
       <body className={`${makerSans.variable} ${makerMono.variable} antialiased`}>
-        {children}
+        <main className="min-h-screen">{children}</main>
+
+        <footer className="bg-gray-100 text-gray-600 text-center py-4 mt-10 text-sm">
+          © {new Date().getFullYear()} MakerDAO Vault DApp | Built with ❤️ using React, Ethers.js & Chainlink
+        </footer>
+
         <Toaster position="top-center" />
       </body>
     </html>

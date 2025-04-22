@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar";
 import toast from "react-hot-toast";
 import React, { useState } from "react";
+import { Coins, ArrowDownCircle } from "lucide-react";
 import ConnectWallet from "../components/ConnectWallet";
 import { getVaultContract } from "../../utils/contract";
 import { formatEther, parseEther } from "ethers";
@@ -129,8 +130,15 @@ export default function UserPage() {
   
           {collateral && debt && (
             <div className="mt-6 text-center space-y-2">
-              <p className="text-lg"> Collateral: <strong>{collateral} ETH</strong></p>
-              <p className="text-lg"> Debt: <strong>{debt} DAI</strong></p>
+              <p className="text-lg flex items-center justify-center gap-2">
+                <Coins className="w-5 h-5 text-green-600" />
+                Collateral: <strong>{collateral} ETH</strong>
+              </p>
+              <p className="text-lg flex items-center justify-center gap-2">
+                <ArrowDownCircle className="w-5 h-5 text-red-600" />
+                Debt: <strong>{debt} DAI</strong>
+              </p>
+
             </div>
           )}
   
