@@ -6,29 +6,9 @@ import styles from './page.module.css';
 
 export default function LoginPage() {
   const [account, setAccount] = useState<string | null>(null);
-  const [isConnecting, setIsConnecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-
-  const connectWallet = async () => {
-    setIsConnecting(true);
-    setError(null);
-
-    try {
-      if (window.ethereum) {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        setAccount(accounts[0]);
-      } else {
-        setError("Please install MetaMask or another Ethereum wallet");
-      }
-    } catch (err) {
-      setError("Failed to connect wallet");
-      console.error(err);
-    } finally {
-      setIsConnecting(false);
-    }
-  };
 
   return (
     <div className={styles.container}>
@@ -43,35 +23,38 @@ export default function LoginPage() {
           A new way to manage your crypto assets globally and freely.
         </p>
 
-        <div className={styles.buttons}>
-          {!account && !showLogin && !showSignup && (
-            <>
-              <button
-                onClick={() => setShowLogin(true)}
-                className={styles.primaryButton}
-              >
-                Log In
-              </button>
-              <button
-                onClick={() => setShowSignup(true)}
-                className={styles.secondaryButton}
-              >
-                Sign Up
-              </button>
-            </>
-          )}
-        </div>
+        {/* Buttons to choose Log In / Sign Up */}
+        {!account && !showLogin && !showSignup && (
+          <div className={styles.buttons}>
+            <button
+              onClick={() => setShowLogin(true)}
+              className={styles.primaryButton}
+            >
+              Log In
+            </button>
+            <button
+              onClick={() => setShowSignup(true)}
+              className={styles.secondaryButton}
+            >
+              Sign Up
+            </button>
+          </div>
+        )}
 
+        {/* Log In Form */}
         {showLogin && (
           <form className={styles.connected}>
+            <p className={styles.back} onClick={() => setShowLogin(false)}>← Back</p>
             <input type="text" placeholder="Username" className="block w-full p-2 mb-2 rounded" required />
             <input type="password" placeholder="Password" className="block w-full p-2 mb-2 rounded" required />
             <button type="submit" className={styles.primaryButton}>Submit</button>
           </form>
         )}
 
+        {/* Sign Up Form */}
         {showSignup && (
           <form className={styles.connected}>
+            <p className={styles.back} onClick={() => setShowSignup(false)}>← Back</p>
             <input type="text" placeholder="Name" className="block w-full p-2 mb-2 rounded" required />
             <input type="email" placeholder="Email" className="block w-full p-2 mb-2 rounded" required />
             <input type="password" placeholder="Password" className="block w-full p-2 mb-2 rounded" required />

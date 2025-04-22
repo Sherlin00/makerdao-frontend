@@ -72,6 +72,18 @@
     border-radius: 12px;
     border: 1px solid rgba(78, 172, 254, 0.3);
   }
+
+  .back {
+    cursor: pointer;
+    color: #aaa;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .back:hover {
+    text-decoration: underline;
+  }
+  
   
   .error {
     color: #ff6b6b;
