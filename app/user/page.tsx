@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "../components/Navbar";
 
 import React, { useState } from "react";
 import ConnectWallet from "../components/ConnectWallet";
@@ -110,109 +111,112 @@ export default function UserPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-10 px-6">
-      <div className="max-w-3xl mx-auto bg-white text-gray-900 rounded-3xl shadow-2xl p-8">
-        <h2 className="text-3xl font-bold mb-4 text-center">Your Vault</h2>
-        <ConnectWallet />
-
-        <div className="text-center mt-4">
-          <button
-            onClick={handleRead}
-            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-            View Vault Info
-          </button>
-        </div>
-
-        {collateral && debt && (
-          <div className="mt-6 text-center space-y-2">
-            <p className="text-lg">💰 Collateral: <strong>{collateral} ETH</strong></p>
-            <p className="text-lg">📉 Debt: <strong>{debt} DAI</strong></p>
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-10 px-6">
+        <div className="max-w-3xl mx-auto bg-white text-gray-900 rounded-3xl shadow-2xl p-8">
+          <h2 className="text-3xl font-bold mb-4 text-center">Your Vault</h2>
+          <ConnectWallet />
+  
+          <div className="text-center mt-4">
+            <button
+              onClick={handleRead}
+              className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            >
+              View Vault Info
+            </button>
           </div>
-        )}
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          {/* Deposit Section */}
-          <div>
-            <label className="block text-sm font-medium mb-1">ETH to Deposit</label>
-            <div className="flex">
-              <input
-                type="text"
-                placeholder="ETH amount"
-                value={depositAmount}
-                onChange={(e) => setDepositAmount(e.target.value)}
-                className="flex-1 p-2 border border-gray-300 rounded-l"
-              />
-              <button
-                onClick={handleDeposit}
-                className="px-4 bg-green-500 text-white rounded-r hover:bg-green-600"
-              >
-                Deposit ETH
-              </button>
+  
+          {collateral && debt && (
+            <div className="mt-6 text-center space-y-2">
+              <p className="text-lg"> Collateral: <strong>{collateral} ETH</strong></p>
+              <p className="text-lg"> Debt: <strong>{debt} DAI</strong></p>
             </div>
-          </div>
-
-          {/* Borrow Section */}
-          <div>
-            <label className="block text-sm font-medium mb-1">DAI to Borrow</label>
-            <div className="flex">
-              <input
-                type="text"
-                placeholder="DAI amount"
-                value={borrowAmount}
-                onChange={(e) => setBorrowAmount(e.target.value)}
-                className="flex-1 p-2 border border-gray-300 rounded-l"
-              />
-              <button
-                onClick={handleBorrow}
-                className="px-4 bg-purple-500 text-white rounded-r hover:bg-purple-600"
-              >
-                Borrow DAI
-              </button>
+          )}
+  
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            {/* Deposit Section */}
+            <div>
+              <label className="block text-sm font-medium mb-1">ETH to Deposit</label>
+              <div className="flex">
+                <input
+                  type="text"
+                  placeholder="ETH amount"
+                  value={depositAmount}
+                  onChange={(e) => setDepositAmount(e.target.value)}
+                  className="flex-1 p-2 border border-gray-300 rounded-l"
+                />
+                <button
+                  onClick={handleDeposit}
+                  className="px-4 bg-green-500 text-white rounded-r hover:bg-green-600"
+                >
+                  Deposit ETH
+                </button>
+              </div>
             </div>
-          </div>
-
-          {/* Repay Section */}
-          <div>
-            <label className="block text-sm font-medium mb-1">DAI to Repay</label>
-            <div className="flex">
-              <input
-                type="text"
-                placeholder="Repay DAI amount"
-                value={repayAmount}
-                onChange={(e) => setRepayAmount(e.target.value)}
-                className="flex-1 p-2 border border-gray-300 rounded-l"
-              />
-              <button
-                onClick={handleRepay}
-                className="px-4 bg-red-500 text-white rounded-r hover:bg-red-600"
-              >
-                Repay DAI
-              </button>
+  
+            {/* Borrow Section */}
+            <div>
+              <label className="block text-sm font-medium mb-1">DAI to Borrow</label>
+              <div className="flex">
+                <input
+                  type="text"
+                  placeholder="DAI amount"
+                  value={borrowAmount}
+                  onChange={(e) => setBorrowAmount(e.target.value)}
+                  className="flex-1 p-2 border border-gray-300 rounded-l"
+                />
+                <button
+                  onClick={handleBorrow}
+                  className="px-4 bg-purple-500 text-white rounded-r hover:bg-purple-600"
+                >
+                  Borrow DAI
+                </button>
+              </div>
             </div>
-          </div>
-
-          {/* Withdraw Section */}
-          <div>
-            <label className="block text-sm font-medium mb-1">ETH to Withdraw</label>
-            <div className="flex">
-              <input
-                type="text"
-                placeholder="Withdraw ETH amount"
-                value={withdrawAmount}
-                onChange={(e) => setWithdrawAmount(e.target.value)}
-                className="flex-1 p-2 border border-gray-300 rounded-l"
-              />
-              <button
-                onClick={handleWithdraw}
-                className="px-4 bg-yellow-500 text-white rounded-r hover:bg-yellow-600"
-              >
-                Withdraw ETH
-              </button>
+  
+            {/* Repay Section */}
+            <div>
+              <label className="block text-sm font-medium mb-1">DAI to Repay</label>
+              <div className="flex">
+                <input
+                  type="text"
+                  placeholder="Repay DAI amount"
+                  value={repayAmount}
+                  onChange={(e) => setRepayAmount(e.target.value)}
+                  className="flex-1 p-2 border border-gray-300 rounded-l"
+                />
+                <button
+                  onClick={handleRepay}
+                  className="px-4 bg-red-500 text-white rounded-r hover:bg-red-600"
+                >
+                  Repay DAI
+                </button>
+              </div>
+            </div>
+  
+            {/* Withdraw Section */}
+            <div>
+              <label className="block text-sm font-medium mb-1">ETH to Withdraw</label>
+              <div className="flex">
+                <input
+                  type="text"
+                  placeholder="Withdraw ETH amount"
+                  value={withdrawAmount}
+                  onChange={(e) => setWithdrawAmount(e.target.value)}
+                  className="flex-1 p-2 border border-gray-300 rounded-l"
+                />
+                <button
+                  onClick={handleWithdraw}
+                  className="px-4 bg-yellow-500 text-white rounded-r hover:bg-yellow-600"
+                >
+                  Withdraw ETH
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </>
+  );  
 }
